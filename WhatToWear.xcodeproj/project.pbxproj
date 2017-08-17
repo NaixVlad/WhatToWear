@@ -12,9 +12,20 @@
 		8364B12B1F20CF9500E4A92F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8364B1291F20CF9500E4A92F /* Main.storyboard */; };
 		8364B12D1F20CF9500E4A92F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8364B12C1F20CF9500E4A92F /* Assets.xcassets */; };
 		8364B1301F20CF9500E4A92F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8364B12E1F20CF9500E4A92F /* LaunchScreen.storyboard */; };
+		8364B1381F2211BF00E4A92F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8364B1371F2211BF00E4A92F /* Podfile */; };
+		8364B13A1F224F1400E4A92F /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1391F224F1300E4A92F /* LocationServices.swift */; };
+		8364B13C1F238D6F00E4A92F /* DailyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */; };
+		8369702A1F2671B300036D6E /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836970291F2671B300036D6E /* TimeView.swift */; };
+		8399BA3E1F247E8100E216FE /* ClientServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399BA3D1F247E8100E216FE /* ClientServices.swift */; };
+		8399BA441F24847D00E216FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399BA431F24847D00E216FE /* Extensions.swift */; };
+		83C312481F24BF58004A6A50 /* DayForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C312471F24BF58004A6A50 /* DayForecastCell.swift */; };
+		83C3124A1F25B051004A6A50 /* HourlyForecastScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */; };
+		83C3124C1F25B1DE004A6A50 /* WeatherBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3124B1F25B1DE004A6A50 /* WeatherBlock.swift */; };
+		F54A67534D72EB256043AAE2 /* Pods_WhatToWear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3476B38AB53E73F138C290 /* Pods_WhatToWear.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D450AEF97FB63A4D17F7BCE /* Pods-WhatToWear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatToWear.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatToWear/Pods-WhatToWear.debug.xcconfig"; sourceTree = "<group>"; };
 		8364B1221F20CF9500E4A92F /* WhatToWear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8364B1251F20CF9500E4A92F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8364B1271F20CF9500E4A92F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +33,17 @@
 		8364B12C1F20CF9500E4A92F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8364B12F1F20CF9500E4A92F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8364B1311F20CF9500E4A92F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8364B1371F2211BF00E4A92F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8364B1391F224F1300E4A92F /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
+		8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecastTableViewController.swift; sourceTree = "<group>"; };
+		836970291F2671B300036D6E /* TimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
+		8399BA3D1F247E8100E216FE /* ClientServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientServices.swift; sourceTree = "<group>"; };
+		8399BA431F24847D00E216FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		83C312471F24BF58004A6A50 /* DayForecastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayForecastCell.swift; sourceTree = "<group>"; };
+		83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyForecastScrollView.swift; sourceTree = "<group>"; };
+		83C3124B1F25B1DE004A6A50 /* WeatherBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherBlock.swift; sourceTree = "<group>"; };
+		BD3476B38AB53E73F138C290 /* Pods_WhatToWear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatToWear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1D244C5F584F1CBBB30D64 /* Pods-WhatToWear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatToWear.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatToWear/Pods-WhatToWear.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +51,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54A67534D72EB256043AAE2 /* Pods_WhatToWear.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000B12EC5125F6BFD21C4494 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD3476B38AB53E73F138C290 /* Pods_WhatToWear.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8364B1191F20CF9500E4A92F = {
 			isa = PBXGroup;
 			children = (
 				8364B1241F20CF9500E4A92F /* WhatToWear */,
 				8364B1231F20CF9500E4A92F /* Products */,
+				E367D25A9072F0F8548DCB92 /* Pods */,
+				000B12EC5125F6BFD21C4494 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +89,38 @@
 			children = (
 				8364B1251F20CF9500E4A92F /* AppDelegate.swift */,
 				8364B1271F20CF9500E4A92F /* ViewController.swift */,
+				8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */,
+				8399BA431F24847D00E216FE /* Extensions.swift */,
+				8364B1391F224F1300E4A92F /* LocationServices.swift */,
+				8399BA3D1F247E8100E216FE /* ClientServices.swift */,
+				83C3124B1F25B1DE004A6A50 /* WeatherBlock.swift */,
+				836970281F266F3200036D6E /* View */,
 				8364B1291F20CF9500E4A92F /* Main.storyboard */,
-				8364B12C1F20CF9500E4A92F /* Assets.xcassets */,
 				8364B12E1F20CF9500E4A92F /* LaunchScreen.storyboard */,
+				8364B12C1F20CF9500E4A92F /* Assets.xcassets */,
 				8364B1311F20CF9500E4A92F /* Info.plist */,
+				8364B1371F2211BF00E4A92F /* Podfile */,
 			);
 			path = WhatToWear;
+			sourceTree = "<group>";
+		};
+		836970281F266F3200036D6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */,
+				836970291F2671B300036D6E /* TimeView.swift */,
+				83C312471F24BF58004A6A50 /* DayForecastCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E367D25A9072F0F8548DCB92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D450AEF97FB63A4D17F7BCE /* Pods-WhatToWear.debug.xcconfig */,
+				EF1D244C5F584F1CBBB30D64 /* Pods-WhatToWear.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8364B1341F20CF9500E4A92F /* Build configuration list for PBXNativeTarget "WhatToWear" */;
 			buildPhases = (
+				644EA77EFD9F80D18FE9130F /* [CP] Check Pods Manifest.lock */,
 				8364B11E1F20CF9500E4A92F /* Sources */,
 				8364B11F1F20CF9500E4A92F /* Frameworks */,
 				8364B1201F20CF9500E4A92F /* Resources */,
+				7640EEB883EBD5AFAA8F6D1B /* [CP] Embed Pods Frameworks */,
+				B299212A2102C1C90904077F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,19 +188,76 @@
 			files = (
 				8364B1301F20CF9500E4A92F /* LaunchScreen.storyboard in Resources */,
 				8364B12D1F20CF9500E4A92F /* Assets.xcassets in Resources */,
+				8364B1381F2211BF00E4A92F /* Podfile in Resources */,
 				8364B12B1F20CF9500E4A92F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		644EA77EFD9F80D18FE9130F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7640EEB883EBD5AFAA8F6D1B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhatToWear/Pods-WhatToWear-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B299212A2102C1C90904077F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhatToWear/Pods-WhatToWear-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8364B11E1F20CF9500E4A92F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8369702A1F2671B300036D6E /* TimeView.swift in Sources */,
 				8364B1281F20CF9500E4A92F /* ViewController.swift in Sources */,
+				8399BA441F24847D00E216FE /* Extensions.swift in Sources */,
+				83C3124C1F25B1DE004A6A50 /* WeatherBlock.swift in Sources */,
+				8364B13A1F224F1400E4A92F /* LocationServices.swift in Sources */,
+				8364B13C1F238D6F00E4A92F /* DailyForecastTableViewController.swift in Sources */,
+				8399BA3E1F247E8100E216FE /* ClientServices.swift in Sources */,
 				8364B1261F20CF9500E4A92F /* AppDelegate.swift in Sources */,
+				83C312481F24BF58004A6A50 /* DayForecastCell.swift in Sources */,
+				83C3124A1F25B051004A6A50 /* HourlyForecastScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +378,7 @@
 		};
 		8364B1351F20CF9500E4A92F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D450AEF97FB63A4D17F7BCE /* Pods-WhatToWear.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = EN6TGHYNHK;
@@ -272,6 +392,7 @@
 		};
 		8364B1361F20CF9500E4A92F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF1D244C5F584F1CBBB30D64 /* Pods-WhatToWear.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = EN6TGHYNHK;
@@ -302,6 +423,7 @@
 				8364B1361F20CF9500E4A92F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -112,8 +112,6 @@ class DailyForecastViewController: UIViewController {
                                     switch result {
                                     case .success(let forecast, let requestMetadata):
                                         
-                                        //print(requestMetadata)
-                                        
                                         DispatchQueue.main.async {
                                             
                                             self.dailyForecastData = (forecast.daily?.data)!
@@ -132,9 +130,6 @@ class DailyForecastViewController: UIViewController {
         }
         
     }
-    
-    
-    
     
 }
 
@@ -169,8 +164,8 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
             
             let dates = self.hourlyForecastData.getDates()[row]
             let blocks = self.hourlyForecastData.getWeatherBlocks()[row]
-            
-            print(blocks.count)
+
+            print(blocks)
             
             let rect = cell.scrollViewContainer.frame
             let scrollView = HourlyForecastScrollView(frame: rect, data: blocks, dates: dates)

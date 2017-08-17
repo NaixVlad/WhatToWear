@@ -46,8 +46,6 @@ class TimeView: UIView {
             let label = createDateLabel(dates[i], frame: labelRect)
             self.addSubview(label)
             
-            print(divider)
-            
         }
         
     }

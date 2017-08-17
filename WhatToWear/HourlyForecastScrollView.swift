@@ -43,11 +43,12 @@ class HourlyForecastScrollView: UIScrollView {
         for i in 0..<data.count {
             
             let block = data[i]
-            print(block.color)
-            print(block.duration)
             let rect = CGRect(x: x, y: 0, width: CGFloat(block.duration) * unit, height: height)
             let view = UIView(frame: rect)
             x = CGFloat(block.duration) * unit
+            
+            print("Цвет - \(block.color) /n")
+            print("Продолжительноть - \(block.duration) /n")
             
             view.backgroundColor = block.color
             self.addSubview(view)

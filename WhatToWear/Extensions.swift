@@ -130,25 +130,26 @@ extension DataBlock {
             var dayBlocks = [WeatherBlock]()
             var i = 0
             
-            for date in 0..<datesOfDay.count {
-                i += 1
-                print("Номер \(date)")
-                if (data[date].icon != data[0].icon) || (date == datesOfDay.count-1){
-                    
+            for date in datesOfDay {
+                
+                if ((data[0].icon != data[i].icon) || (datesOfDay.last == date)) {
+                    print("Первая - \(data[0].icon) Вторая - \(data[i].icon)")
                     let weatherBlock = WeatherBlock()
                     weatherBlock.startTime = data[0].time
-                    weatherBlock.description = data[0].summary!
+                    weatherBlock.endTime = data[i].time
                     
-                    weatherBlock.endTime = data[date].time
-                    print("Поменял:\(date)")
-                    let slice = data.dropFirst(i-1)
+                    weatherBlock.description = (data[0].icon?.rawValue)!
+                    weatherBlock.color = (data[0].icon?.getColor())!
+                    
+                    let slice = data.dropFirst(i)
                     let subArray = Array(slice)
                     data = subArray
                     dayBlocks.append(weatherBlock)
-                    print("Осталось \(data.count)")
                     i = 0
                     
                 }
+                
+                i += 1
                 
             }
             

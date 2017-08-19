@@ -16,13 +16,14 @@ class WeatherBlock {
     var endTime: Date!
     
     var duration: Int {
-        return Int(endTime.getHour()!)! - Int(startTime.getHour()!)!
+        return endTime.hours(from: startTime)
     }
     
     
-    var description = "Ясно"
+    var description = ""
     
     var color = UIColor.white
     
+
     
 }

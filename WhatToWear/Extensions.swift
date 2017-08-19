@@ -22,39 +22,135 @@ extension Icon {
         
         switch self {
         case .clearDay, .clearNight:
-            return UIColor.red
+            return UIColor.сloudless
             
-        /// A clear night.
-        case .partlyCloudyDay, .partlyCloudyNight:
-            return UIColor.lightGray
+        case .partlyCloudyDay, .partlyCloudyNight, .wind:
+            return UIColor.partlyCloudy
             
         case .cloudy, .fog:
-            return UIColor.darkGray
+            return UIColor.cloudy
             
-        case .rain:
-            return UIColor.blue
+        case .rain, .snow, .sleet:
+            return UIColor.rain
             
-        /// A snowy day or night.
-        case .snow:
-            return UIColor.white
-        /// A sleety day or night.
-        case .sleet:
-            return UIColor.white
-        /// A windy day or night.
-        case .wind:
-            return UIColor.white
-
-
         }
     }
 }
 
+extension String {
+    
+    func width(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSFontAttributeName: font]
+        let size = self.size(attributes: fontAttributes)
+        return size.width
+    }
+}
+
+extension CGFloat {
+    static func random() -> CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UInt32.max)
+    }
+}
+
+
+
+extension UIColor {
+    
+    public class var lightBackground: UIColor {
+        return UIColor(red: 0.988, green: 0.988, blue: 0.988, alpha: 1.0)
+    }
+    
+    public class var сloudless: UIColor {
+        return UIColor(red: 0.933, green: 0.929, blue: 0.961, alpha: 1.0)
+    }
+    
+    public class var partlyCloudy: UIColor {
+        return UIColor(red: 0.831, green: 0.855, blue: 0.886, alpha: 1.0)
+    }
+    
+    public class var cloudy: UIColor {
+        return UIColor(red: 0.710, green: 0.750, blue: 0.800, alpha: 1.0)
+    }
+    
+    public class var rain: UIColor {
+        return UIColor(red: 0.478, green: 0.635, blue: 0.847, alpha: 1.0)
+    }
+
+    
+    static var random: UIColor {
+        return UIColor(red: .random(), green: .random(), blue: .random(), alpha: 1.0)
+    }
+
+}
+
+
+extension UILabel {
+    
+    func setPrefferedTextColor() {
+        
+        if (self.backgroundColor?.isEqual(UIColor.rain))! {
+            self.textColor = UIColor.white
+        } else {
+            self.textColor = UIColor.black
+        }
+        
+    }
+    
+}
+
+
+
 extension Date {
+    
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
+    }
+    /// Returns the amount of months from another date
+    func months(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    }
+    /// Returns the amount of weeks from another date
+    func weeks(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.weekOfMonth], from: date, to: self).weekOfMonth ?? 0
+    }
+    /// Returns the amount of days from another date
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
+    /// Returns the amount of hours from another date
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+    }
+    /// Returns the amount of minutes from another date
+    func minutes(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
+    }
+    /// Returns the amount of seconds from another date
+    func seconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+    
+    func offset(from date: Date) -> String {
+        if years(from: date)   > 0 { return "\(years(from: date))y"   }
+        if months(from: date)  > 0 { return "\(months(from: date))M"  }
+        if weeks(from: date)   > 0 { return "\(weeks(from: date))w"   }
+        if days(from: date)    > 0 { return "\(days(from: date))d"    }
+        if hours(from: date)   > 0 { return "\(hours(from: date))h"   }
+        if minutes(from: date) > 0 { return "\(minutes(from: date))m" }
+        if seconds(from: date) > 0 { return "\(seconds(from: date))s" }
+        return ""
+    }
+    
+    func format(_ format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
     
     func dayNumberOfWeek() -> Int? {
         return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
-
+    
     func dayOfWeek() -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
@@ -81,9 +177,42 @@ extension Date {
     
 }
 
+
+
 extension DataBlock {
     
-    func getDates() -> [[Date]] {
+    func getDataByDays() -> [[DataPoint]] {
+        
+        let dataPoints = self.data
+        
+        var days = [[DataPoint]]()
+        
+        var dayFlag = 0
+        let midnight = "0:0"
+        
+        for i in 0..<dataPoints.count {
+            
+            let time = dataPoints[i].time.getTime()
+            
+            if (time == midnight && dayFlag != i) {
+                
+                let daySlice = dataPoints[dayFlag..<i+1]
+                let dayDataPoints = Array(daySlice)
+                /*let dayDates = dayDataPoint.map({ (dataPoint: DataPoint) -> Date in
+                    dataPoint.time
+                })*/
+                days.append(dayDataPoints)
+                dayFlag = i
+                
+            }
+            
+        }
+        
+        return days
+        
+    }
+    
+    /*func getDates() -> [[Date]] {
         
         let dataPoints = self.data
         
@@ -96,7 +225,7 @@ extension DataBlock {
             
             let time = dataPoints[i].time.getTime()
             
-            if (time == midnight) {
+            if (time == midnight && dayFlag != i) {
                 
                 let daySlice = dataPoints[dayFlag..<i+1]
                 let dayDataPoint = Array(daySlice)
@@ -111,6 +240,46 @@ extension DataBlock {
         }
         
         return days
+        
+    }*/
+    
+    func getDates() -> [[Date]] {
+        
+        let days = self.getDataByDays()
+        
+        var daysWithDates = [[Date]]()
+        
+        for day in days {
+        
+            let dayDates = day.map({ (dataPoint: DataPoint) -> Date in
+                dataPoint.time
+            })
+            
+           daysWithDates.append(dayDates)
+            
+        }
+        
+        return daysWithDates
+        
+    }
+    
+    func getTemperatures() -> [[Float]] {
+        
+        let days = self.getDataByDays()
+        
+        var daysWithTemperatures = [[Float]]()
+        
+        for day in days {
+            
+            let dayDates = day.map({ (dataPoint: DataPoint) -> Float in
+                dataPoint.temperature!
+            })
+            
+            daysWithTemperatures.append(dayDates)
+            
+        }
+        
+        return daysWithTemperatures
         
     }
     
@@ -132,13 +301,13 @@ extension DataBlock {
             
             for date in datesOfDay {
                 
-                if ((data[0].icon != data[i].icon) || (datesOfDay.last == date)) {
-                    print("Первая - \(data[0].icon) Вторая - \(data[i].icon)")
+                if ((data[0].summary != data[i].summary) || (datesOfDay.last == date)) {
+
                     let weatherBlock = WeatherBlock()
                     weatherBlock.startTime = data[0].time
                     weatherBlock.endTime = data[i].time
                     
-                    weatherBlock.description = (data[0].icon?.rawValue)!
+                    weatherBlock.description = data[0].summary!
                     weatherBlock.color = (data[0].icon?.getColor())!
                     
                     let slice = data.dropFirst(i)

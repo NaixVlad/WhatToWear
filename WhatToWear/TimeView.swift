@@ -10,6 +10,7 @@ import UIKit
 
 class TimeView: UIView {
 
+/*
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -31,21 +32,23 @@ class TimeView: UIView {
         let lineHeight = height / 2
         let labelHeigth = lineHeight
         let labelWidth = width / CGFloat(count)
+        let offset: CGFloat = 2
         
         for i in 0..<count {
             
             let x = divider * CGFloat(i) + padding + divider/2
-            let startPoint = CGPoint(x: x, y: 0)
+            let startPoint = CGPoint(x: x, y: 0 + offset)
             let endPoint = CGPoint(x: x, y: lineHeight)
             let layer = createLine(startPoint, endPoint: endPoint)
             self.layer.addSublayer(layer)
             
             let labelX = labelWidth * CGFloat(i)
-            let labelY = height / 2
+            let labelY = height / 2 - offset
             let labelRect = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeigth)
-            let label = createDateLabel(dates[i], frame: labelRect)
-            self.addSubview(label)
-            
+            let dateLabel = createDateLabel(dates[i], frame: labelRect)
+            let temperatureLabel = createTemperatureLabel(0, frame: labelRect)
+            self.addSubview(dateLabel)
+            self.addSubview(temperatureLabel)
         }
         
     }
@@ -81,6 +84,19 @@ class TimeView: UIView {
         
         
     }
+    
+    private func createTemperatureLabel(_ temperature: Int, frame: CGRect) -> UILabel {
+        
+        let label = UILabel(frame: frame)
+        
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.text = temperature.description
+        
+        return label
+        
+        
+    }
 
-
+*/
 }

@@ -164,18 +164,21 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
             
             let dates = self.hourlyForecastData.getDates()[row]
             let blocks = self.hourlyForecastData.getWeatherBlocks()[row]
+            let temperatures = self.hourlyForecastData.getTemperatures()[row]
 
-            print(blocks)
+            cell.createHourlyForecast(dates: dates,
+                                      weatherBlocks: blocks,
+                                      temperatures: temperatures,
+                                      unitSize: 80)
             
-            let rect = cell.scrollViewContainer.frame
-            let scrollView = HourlyForecastScrollView(frame: rect, data: blocks, dates: dates)
-            cell.addSubview(scrollView)
+            if row == 0 {
+                cell.dayOfWeekLabel.text = "Сегодня"
+            } else {
+                cell.dayOfWeekLabel.text = data.time.dayOfWeek()!
+            }
+
+            cell.dateValueLabel.text = data.time.format("dd:MM:yy")
             
-            //print(dates.count)
-            //cell.hourlyForecastScrollView.createTimeLine(dates[row])
-            
-            cell.dayOfWeekLabel.text = data.time.dayOfWeek()!
-            cell.dateValueLabel.text = "\(data.time)"
             cell.temperatureMinValueLabel.text = "\(Int(data.temperatureMin!))"
             cell.temperatureMaxValueLabel.text = "\(Int(data.temperatureMax!))"
             
@@ -211,6 +214,8 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
         
     }
     
+    
+    
     // MARK: - Table view delegate
     
     
@@ -236,7 +241,7 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath == selectedIndexPath {
+       if indexPath == selectedIndexPath {
             return DayForecastCell.expandedHeight
         } else {
             return DayForecastCell.defaultHeight

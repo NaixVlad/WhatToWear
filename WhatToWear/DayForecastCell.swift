@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DayForecastCell: UITableViewCell {
+class DayForecastCell: UITableViewCell  {
 
     
     @IBOutlet weak var dayOfWeekLabel: UILabel!
@@ -29,19 +29,47 @@ class DayForecastCell: UITableViewCell {
     
     @IBOutlet weak var windSpeedValueLabel: UILabel!
     @IBOutlet weak var windBearingValueLabel: UILabel!
-    
-    class var expandedHeight: CGFloat { get { return 300 } }
+
+    class var expandedHeight: CGFloat { get { return 390 } }
     class var defaultHeight: CGFloat  { get { return 75  } }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        for view in scrollViewContainer.subviews {
+            view.removeFromSuperview()
+        }
+    }
+    
+    func createHourlyForecast(dates: [Date], weatherBlocks: [WeatherBlock],
+                              temperatures: [Float], unitSize: CGFloat) {
+        
+        let width = self.contentView.frame.width
+        let height = scrollViewContainer.frame.height
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        let scrollView = HourlyForecastScrollView(frame: rect,
+                                                  dates: dates,
+                                                  weatherBlocks: weatherBlocks,
+                                                  temperatures: temperatures,
+                                                  unitSize: unitSize)
+        
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        scrollViewContainer.addSubview(scrollView)
+        
+    }
+    
 
 }
+

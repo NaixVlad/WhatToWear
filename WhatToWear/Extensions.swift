@@ -37,6 +37,12 @@ extension Icon {
     }
 }
 
+extension Float {
+    
+    var percent: Int { get { return Int(self * 100) } }
+    
+}
+
 extension String {
     
     func width(usingFont font: UIFont) -> CGFloat {
@@ -47,6 +53,7 @@ extension String {
 }
 
 extension CGFloat {
+    
     static func random() -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }

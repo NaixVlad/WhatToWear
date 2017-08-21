@@ -36,8 +36,6 @@ class HourlyForecastScrollView: UIScrollView {
         createWeatherDescriptionPart(weatherBlocks: weatherBlocks)
         createTemperaturePart(temperatures: temperatures)
 
-        
-        
     }
     
     
@@ -113,7 +111,7 @@ class HourlyForecastScrollView: UIScrollView {
             
             label.setPrefferedTextColor()
             
-            label.layer.cornerRadius = 5
+            label.layer.cornerRadius = 10
             label.layer.masksToBounds = true
             
             blocksView.addSubview(label)
@@ -146,7 +144,8 @@ class HourlyForecastScrollView: UIScrollView {
             let x: CGFloat = i * unitSize - unitSize / 2
             let labelRect = CGRect(x: x, y: height/2, width: unitSize, height: height/2)
             let label = UILabel(frame: labelRect)
-            label.text = temperature.description
+            let intTemperature = Int(temperature)
+            label.text = intTemperature.description + "°"
             label.textAlignment = .center
             label.font = UIFont (name: "HelveticaNeue-Light", size: 10)
             temperatureView.addSubview(label)

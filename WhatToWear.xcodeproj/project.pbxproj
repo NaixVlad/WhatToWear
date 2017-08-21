@@ -15,9 +15,12 @@
 		8364B1381F2211BF00E4A92F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8364B1371F2211BF00E4A92F /* Podfile */; };
 		8364B13A1F224F1400E4A92F /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1391F224F1300E4A92F /* LocationServices.swift */; };
 		8364B13C1F238D6F00E4A92F /* DailyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */; };
-		8369702A1F2671B300036D6E /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836970291F2671B300036D6E /* TimeView.swift */; };
 		8399BA3E1F247E8100E216FE /* ClientServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399BA3D1F247E8100E216FE /* ClientServices.swift */; };
 		8399BA441F24847D00E216FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399BA431F24847D00E216FE /* Extensions.swift */; };
+		83BF4EC01F49F38100839266 /* CompasPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EBF1F49F38100839266 /* CompasPoint.swift */; };
+		83BF4EC81F4A18CF00839266 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EC71F4A18CF00839266 /* SettingsViewController.swift */; };
+		83BF4ECA1F4B207E00839266 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EC91F4B207E00839266 /* Settings.swift */; };
+		83BF4ECC1F4B342100839266 /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4ECB1F4B342100839266 /* Measurements.swift */; };
 		83C312481F24BF58004A6A50 /* DayForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C312471F24BF58004A6A50 /* DayForecastCell.swift */; };
 		83C3124A1F25B051004A6A50 /* HourlyForecastScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */; };
 		83C3124C1F25B1DE004A6A50 /* WeatherBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3124B1F25B1DE004A6A50 /* WeatherBlock.swift */; };
@@ -36,9 +39,12 @@
 		8364B1371F2211BF00E4A92F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8364B1391F224F1300E4A92F /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecastTableViewController.swift; sourceTree = "<group>"; };
-		836970291F2671B300036D6E /* TimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		8399BA3D1F247E8100E216FE /* ClientServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientServices.swift; sourceTree = "<group>"; };
 		8399BA431F24847D00E216FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		83BF4EBF1F49F38100839266 /* CompasPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompasPoint.swift; sourceTree = "<group>"; };
+		83BF4EC71F4A18CF00839266 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		83BF4EC91F4B207E00839266 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		83BF4ECB1F4B342100839266 /* Measurements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurements.swift; sourceTree = "<group>"; };
 		83C312471F24BF58004A6A50 /* DayForecastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayForecastCell.swift; sourceTree = "<group>"; };
 		83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyForecastScrollView.swift; sourceTree = "<group>"; };
 		83C3124B1F25B1DE004A6A50 /* WeatherBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherBlock.swift; sourceTree = "<group>"; };
@@ -90,6 +96,10 @@
 				8364B1251F20CF9500E4A92F /* AppDelegate.swift */,
 				8364B1271F20CF9500E4A92F /* ViewController.swift */,
 				8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */,
+				83BF4EC71F4A18CF00839266 /* SettingsViewController.swift */,
+				83BF4EC91F4B207E00839266 /* Settings.swift */,
+				83BF4ECB1F4B342100839266 /* Measurements.swift */,
+				83BF4EBF1F49F38100839266 /* CompasPoint.swift */,
 				8399BA431F24847D00E216FE /* Extensions.swift */,
 				8364B1391F224F1300E4A92F /* LocationServices.swift */,
 				8399BA3D1F247E8100E216FE /* ClientServices.swift */,
@@ -108,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */,
-				836970291F2671B300036D6E /* TimeView.swift */,
 				83C312471F24BF58004A6A50 /* DayForecastCell.swift */,
 			);
 			name = View;
@@ -248,15 +257,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8369702A1F2671B300036D6E /* TimeView.swift in Sources */,
 				8364B1281F20CF9500E4A92F /* ViewController.swift in Sources */,
+				83BF4ECA1F4B207E00839266 /* Settings.swift in Sources */,
 				8399BA441F24847D00E216FE /* Extensions.swift in Sources */,
 				83C3124C1F25B1DE004A6A50 /* WeatherBlock.swift in Sources */,
 				8364B13A1F224F1400E4A92F /* LocationServices.swift in Sources */,
 				8364B13C1F238D6F00E4A92F /* DailyForecastTableViewController.swift in Sources */,
 				8399BA3E1F247E8100E216FE /* ClientServices.swift in Sources */,
+				83BF4ECC1F4B342100839266 /* Measurements.swift in Sources */,
 				8364B1261F20CF9500E4A92F /* AppDelegate.swift in Sources */,
 				83C312481F24BF58004A6A50 /* DayForecastCell.swift in Sources */,
+				83BF4EC81F4A18CF00839266 /* SettingsViewController.swift in Sources */,
+				83BF4EC01F49F38100839266 /* CompasPoint.swift in Sources */,
 				83C3124A1F25B051004A6A50 /* HourlyForecastScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

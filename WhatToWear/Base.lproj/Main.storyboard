@@ -492,33 +492,228 @@
             </objects>
             <point key="canvasLocation" x="348" y="1419"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Настройки-->
         <scene sceneID="yIj-KD-Ile">
             <objects>
-                <tableViewController id="i69-Ck-W5h" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6hG-Wl-dSm">
+                <tableViewController id="i69-Ck-W5h" customClass="SettingsViewController" customModule="WhatToWear" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="6hG-Wl-dSm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="p8t-CC-mot">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8t-CC-mot" id="cTh-rZ-sIL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="" id="TSH-a9-N57">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="p8t-CC-mot">
+                                        <rect key="frame" x="0.0" y="35" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8t-CC-mot" id="cTh-rZ-sIL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Температура" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYK-ZI-80x">
+                                                    <rect key="frame" x="8" y="12" width="107" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tpx-PT-fZd">
+                                                    <rect key="frame" x="251" y="8" width="155" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="155" id="MeW-xZ-tLK"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="°C"/>
+                                                        <segment title="°F"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.22445401549339294" green="0.61998993158340454" blue="0.92841655015945435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="temperatureMeasurementValueChanged:" destination="i69-Ck-W5h" eventType="valueChanged" id="mDf-4g-c7v"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Tpx-PT-fZd" secondAttribute="trailing" constant="8" id="3ad-WF-csZ"/>
+                                                <constraint firstItem="dYK-ZI-80x" firstAttribute="top" secondItem="cTh-rZ-sIL" secondAttribute="topMargin" constant="4" id="NzG-r7-CMp"/>
+                                                <constraint firstItem="dYK-ZI-80x" firstAttribute="leading" secondItem="cTh-rZ-sIL" secondAttribute="leadingMargin" id="aB5-1Q-Yhk"/>
+                                                <constraint firstItem="Tpx-PT-fZd" firstAttribute="top" secondItem="cTh-rZ-sIL" secondAttribute="top" constant="8" id="fes-Qm-DKH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Shg-KR-vvC">
+                                        <rect key="frame" x="0.0" y="79" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Shg-KR-vvC" id="jY0-aS-yma">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Сила ветра" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDx-Pc-rae">
+                                                    <rect key="frame" x="8" y="12" width="90" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I4c-xn-SAU">
+                                                    <rect key="frame" x="251" y="8" width="155" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="155" id="l7S-DI-toK"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="м/с"/>
+                                                        <segment title="км/ч"/>
+                                                        <segment title="миля/ч"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.22854566570000001" green="0.62776690719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="speedMeasurementValueChanged:" destination="i69-Ck-W5h" eventType="valueChanged" id="zvN-zE-EVm"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="I4c-xn-SAU" secondAttribute="trailing" constant="8" id="K3X-6u-pH9"/>
+                                                <constraint firstItem="I4c-xn-SAU" firstAttribute="top" secondItem="jY0-aS-yma" secondAttribute="top" constant="8" id="vfQ-PI-A27"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="SXM-uI-dxu">
+                                        <rect key="frame" x="0.0" y="123" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SXM-uI-dxu" id="UOV-gz-DtU">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Давление" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCt-1z-9dy">
+                                                    <rect key="frame" x="8" y="12" width="79" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-LJ-2ZT">
+                                                    <rect key="frame" x="251" y="8" width="155" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="155" id="RPD-JC-N4K"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="мм рт.ст."/>
+                                                        <segment title="гПа"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.22854566570000001" green="0.62776690719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="pressureMeasurementValueChanged:" destination="i69-Ck-W5h" eventType="valueChanged" id="tgw-Xx-WEy"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jFe-LJ-2ZT" firstAttribute="top" secondItem="UOV-gz-DtU" secondAttribute="top" constant="8" id="Gz6-aJ-sDW"/>
+                                                <constraint firstAttribute="trailing" secondItem="jFe-LJ-2ZT" secondAttribute="trailing" constant="8" id="t4W-Rx-Heo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="" id="QEN-8B-r4Q">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="hDu-fJ-yhe">
+                                        <rect key="frame" x="0.0" y="203" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hDu-fJ-yhe" id="8di-l5-lZg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Персонаж" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGZ-xY-y1l">
+                                                    <rect key="frame" x="8" y="12" width="84" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zmZ-Pk-FHn">
+                                                    <rect key="frame" x="251" y="8" width="155" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="155" id="1Th-6e-6OR"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="М"/>
+                                                        <segment title="Ж"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.22445401549999999" green="0.61998993160000004" blue="0.92841655020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="characterSexValueChanged:" destination="i69-Ck-W5h" eventType="valueChanged" id="cDx-7l-NtU"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uGZ-xY-y1l" firstAttribute="top" secondItem="8di-l5-lZg" secondAttribute="topMargin" constant="4" id="HPt-tO-QLX"/>
+                                                <constraint firstItem="uGZ-xY-y1l" firstAttribute="leading" secondItem="8di-l5-lZg" secondAttribute="leadingMargin" id="Iwd-Sc-Gz2"/>
+                                                <constraint firstItem="zmZ-Pk-FHn" firstAttribute="top" secondItem="8di-l5-lZg" secondAttribute="top" constant="8" id="LHB-ig-7c2"/>
+                                                <constraint firstAttribute="trailing" secondItem="zmZ-Pk-FHn" secondAttribute="trailing" constant="8" id="wSH-pd-QvB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="" id="IDX-8r-Z7C">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="CW8-y6-Sup">
+                                        <rect key="frame" x="0.0" y="283" width="414" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CW8-y6-Sup" id="G0F-BZ-KDe">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Уведомления" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1g-VN-nmy">
+                                                    <rect key="frame" x="8" y="12" width="108" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4PU-Zj-RiL">
+                                                    <rect key="frame" x="357" y="7" width="51" height="31"/>
+                                                    <color key="tintColor" red="0.22854566570000001" green="0.62776690719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="onTintColor" red="0.22854566570000001" green="0.62776690719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="notificationsValueChanged:" destination="i69-Ck-W5h" eventType="valueChanged" id="0vi-NC-xZV"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Это могут быть сообщения о резких переменах в погоде или предупреждения МЧС" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqQ-Sz-lF6">
+                                                    <rect key="frame" x="8" y="38" width="398" height="51.666666666666671"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x1g-VN-nmy" firstAttribute="top" secondItem="G0F-BZ-KDe" secondAttribute="topMargin" constant="4" id="1DH-4R-blB"/>
+                                                <constraint firstItem="x1g-VN-nmy" firstAttribute="leading" secondItem="G0F-BZ-KDe" secondAttribute="leadingMargin" id="1mC-nx-DCd"/>
+                                                <constraint firstItem="4PU-Zj-RiL" firstAttribute="top" secondItem="G0F-BZ-KDe" secondAttribute="top" constant="7" id="49F-l5-8SS"/>
+                                                <constraint firstAttribute="trailing" secondItem="4PU-Zj-RiL" secondAttribute="trailing" constant="8" id="7om-bF-wwk"/>
+                                                <constraint firstAttribute="bottom" secondItem="NqQ-Sz-lF6" secondAttribute="bottom" id="BuK-JT-ueg"/>
+                                                <constraint firstItem="NqQ-Sz-lF6" firstAttribute="top" secondItem="4PU-Zj-RiL" secondAttribute="bottom" id="NAS-7I-O7w"/>
+                                                <constraint firstItem="NqQ-Sz-lF6" firstAttribute="trailing" secondItem="4PU-Zj-RiL" secondAttribute="trailing" id="WcW-he-ITC"/>
+                                                <constraint firstItem="NqQ-Sz-lF6" firstAttribute="leading" secondItem="x1g-VN-nmy" secondAttribute="leading" id="bJj-zH-MYv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="i69-Ck-W5h" id="S4Z-Gc-MGq"/>
                             <outlet property="delegate" destination="i69-Ck-W5h" id="ceb-vj-zjG"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Настройки" id="Tti-BF-nhV"/>
+                    <connections>
+                        <outlet property="characterSexSegmentedControl" destination="zmZ-Pk-FHn" id="PlD-Dp-rYA"/>
+                        <outlet property="notificationsSwitch" destination="4PU-Zj-RiL" id="dX2-y8-K6R"/>
+                        <outlet property="pressureMeasurementSegmentedControl" destination="jFe-LJ-2ZT" id="kW4-ta-PM7"/>
+                        <outlet property="speedMeasurementSegmentedControl" destination="I4c-xn-SAU" id="gPj-Md-ggx"/>
+                        <outlet property="temperatureMeasurementSegmentedControl" destination="Tpx-PT-fZd" id="WoS-dS-UG6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efY-QR-0R9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856" y="572"/>
+            <point key="canvasLocation" x="1020" y="571"/>
         </scene>
     </scenes>
     <resources>

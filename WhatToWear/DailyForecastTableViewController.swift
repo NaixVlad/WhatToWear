@@ -9,6 +9,7 @@
 import UIKit
 import ForecastIO
 
+
 class DailyForecastViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -137,8 +138,6 @@ class DailyForecastViewController: UIViewController {
 
 extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegate {
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -179,17 +178,24 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
 
             cell.dateValueLabel.text = data.time.format("dd:MM:yy")
             
-            cell.temperatureMinValueLabel.text = "\(Int(data.temperatureMin!))"
-            cell.temperatureMaxValueLabel.text = "\(Int(data.temperatureMax!))"
+            let defaultFloat: Float = 0.0
+            cell.temperatureMinValueLabel.text = (Int(data.temperatureMin ?? defaultFloat)).description
+            cell.temperatureMaxValueLabel.text = (Int(data.temperatureMax ?? defaultFloat)).description
             
-            cell.sunriseTimeValueLabel.text = "\(data.sunriseTime?.getTime() ?? "0:00")"
-            cell.sunsetTimeValueLabel.text = "\(data.sunsetTime?.getTime() ?? "0:00")"
+            let deafaultTime = "0:00"
+            cell.sunriseTimeValueLabel.text = "\(data.sunriseTime?.getTime() ?? deafaultTime)"
+            cell.sunsetTimeValueLabel.text = "\(data.sunsetTime?.getTime() ?? deafaultTime)"
             
-            cell.precipitationIntensityValueLabel.text = "\(data.precipitationIntensity ?? 0)"
-            cell.humidityValueLabel.text = "\(data.humidity ?? 0)"
+            let strPrecipitationIntensity = data.precipitationIntensity?.percent.description 
+            cell.precipitationIntensityValueLabel.text = (strPrecipitationIntensity ?? "0") + "%"
+            
+            let strHumidity = data.humidity?.percent.description
+            cell.humidityValueLabel.text = (strHumidity ?? "0") + "%"
             
             cell.windSpeedValueLabel.text = "\(data.windSpeed ?? 0)"
-            cell.windBearingValueLabel.text = "\(data.windBearing ?? 0)"
+            
+            let compasPoint = CompassPoint(degrees: (data.windBearing ?? defaultFloat))
+            cell.windBearingValueLabel.text = compasPoint.description
             
             let image = UIImage(named: (data.icon?.rawValue)! + "Black")
             cell.iconImageView.image = image

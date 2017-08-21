@@ -13,57 +13,15 @@ class ClientServices: DarkSkyClient {
     
     static let shared = ClientServices()
     
-    //let client = DarkSkyClient(apiKey: "80699cc044c5a8677fbe48692fe0c850")
-    
-    private init() {
+    fileprivate init() {
         
         super.init(apiKey: "80699cc044c5a8677fbe48692fe0c850")
         let lang = Locale.current.languageCode
         self.language = Language(rawValue: lang!)
         print(lang ?? "ENGLISH")
-        self.units = .auto
+        self.units = .si
         
     }
-    
-    /*func getDailyForecast(latitude: Double, longitude: Double) -> [DataPoint] {
-        
-        var tempArray = [DataPoint]()
-        
-        client.getForecast(latitude: latitude, longitude: longitude) { result in
-            switch result {
-            case .success(let currentForecast, let requestMetadata):
-
-                tempArray = (currentForecast.daily?.data)!
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            
-        }
-
-        return tempArray
-        
-    }
-    
-    func getHorlyForecast(latitude: Double, longitude: Double) -> [DataPoint] {
-        
-        var tempArray = [DataPoint]()
-        
-        client.getForecast(latitude: latitude, longitude: longitude) { result in
-            switch result {
-            case .success(let currentForecast, let requestMetadata):
-                
-                tempArray = (currentForecast.hourly?.data)!
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            
-        }
-        
-        return tempArray
-        
-    }*/
     
     func redirectToDarkSky() {
         

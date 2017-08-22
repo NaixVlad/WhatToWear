@@ -25,36 +25,36 @@ class SettingsViewController: UITableViewController {
 
         let temperature = Settings.shared.temperatureMeasurement
         switch temperature {
-        case .degreesCelsius:
-            temperatureMeasurementSegmentedControl.selectedSegmentIndex = 0
-        case .degreesFahrenheit:
-            temperatureMeasurementSegmentedControl.selectedSegmentIndex = 1
+            case .degreesCelsius:
+                temperatureMeasurementSegmentedControl.selectedSegmentIndex = 0
+            case .degreesFahrenheit:
+                temperatureMeasurementSegmentedControl.selectedSegmentIndex = 1
         }
         
         let speed = Settings.shared.speedMeasurement
         switch speed {
-        case .metersPerHour:
-            speedMeasurementSegmentedControl.selectedSegmentIndex = 0
-        case .kilometersPerHour:
-            speedMeasurementSegmentedControl.selectedSegmentIndex = 1
-        case .milesPerHour:
-            speedMeasurementSegmentedControl.selectedSegmentIndex = 2
+            case .metersPerHour:
+                speedMeasurementSegmentedControl.selectedSegmentIndex = 0
+            case .kilometersPerHour:
+                speedMeasurementSegmentedControl.selectedSegmentIndex = 1
+            case .milesPerHour:
+                speedMeasurementSegmentedControl.selectedSegmentIndex = 2
         }
         
         let pressure = Settings.shared.pressureMeasurement
         switch pressure {
-        case .millimetersOfMercury:
-            pressureMeasurementSegmentedControl.selectedSegmentIndex = 0
-        case .hectopascals:
-            pressureMeasurementSegmentedControl.selectedSegmentIndex = 1
+            case .millimetersOfMercury:
+                pressureMeasurementSegmentedControl.selectedSegmentIndex = 0
+            case .hectopascals:
+                pressureMeasurementSegmentedControl.selectedSegmentIndex = 1
         }
         
         let sex = Settings.shared.characterSex
         switch sex {
-        case .male:
-            characterSexSegmentedControl.selectedSegmentIndex = 0
-        case .female:
-            characterSexSegmentedControl.selectedSegmentIndex = 1
+            case .male:
+                characterSexSegmentedControl.selectedSegmentIndex = 0
+            case .female:
+                characterSexSegmentedControl.selectedSegmentIndex = 1
         }
         
         
@@ -64,18 +64,6 @@ class SettingsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    /*override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }*/
 
 
     @IBAction func temperatureMeasurementValueChanged(_ sender: UISegmentedControl) {

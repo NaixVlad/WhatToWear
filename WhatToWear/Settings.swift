@@ -58,7 +58,6 @@ class Settings {
         set {
             
             UserDefaults.standard.set(newValue.rawValue, forKey: kSpeedMeasurement)
-
             
         }
     }

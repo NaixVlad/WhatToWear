@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum CompassPoint: Float {
     
@@ -74,6 +75,10 @@ enum CompassPoint: Float {
             
         }
         
+    }
+    
+    func getImage() -> UIImage {
+        return UIImage()
     }
     
 }

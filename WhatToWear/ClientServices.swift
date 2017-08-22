@@ -18,7 +18,6 @@ class ClientServices: DarkSkyClient {
         super.init(apiKey: "80699cc044c5a8677fbe48692fe0c850")
         let lang = Locale.current.languageCode
         self.language = Language(rawValue: lang!)
-        print(lang ?? "ENGLISH")
         self.units = .si
         
     }

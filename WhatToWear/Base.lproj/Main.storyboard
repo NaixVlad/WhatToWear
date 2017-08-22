@@ -30,7 +30,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2O6-Vu-9QS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-488" y="571"/>
+            <point key="canvasLocation" x="-578" y="571"/>
         </scene>
         <!--Daily Forecast View Controller-->
         <scene sceneID="ByM-bT-RRr">
@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8K-Ry-XYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="347.82608695652175" y="-294.29347826086956"/>
+            <point key="canvasLocation" x="154" y="-223"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="e9s-Ho-ipL">
@@ -421,7 +421,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <segue destination="T4w-yw-OtU" kind="show" id="u6e-2N-sSc"/>
+                                <segue destination="dv8-9T-SXI" kind="show" id="tdk-4D-qDL"/>
                             </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" image="Settings Icon" id="Zro-zv-q7o">
@@ -441,56 +441,100 @@
             </objects>
             <point key="canvasLocation" x="155" y="571"/>
         </scene>
-        <!--Выберите город-->
-        <scene sceneID="XzB-oZ-SM8">
+        <!--Places View Controller-->
+        <scene sceneID="3Vk-22-zzU">
             <objects>
-                <tableViewController id="T4w-yw-OtU" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="IYj-kv-Deu">
+                <tableViewController id="dv8-9T-SXI" customClass="PlacesViewController" customModule="WhatToWear" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vWJ-R0-460">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="7Zh-Rk-88S">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="barTintColor" red="0.31369501352310181" green="0.31374502182006836" blue="0.31368404626846313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="T4w-yw-OtU" id="P0q-9O-anC"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="pZj-3y-JFS">
-                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="location" id="L9f-1C-Cai">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pZj-3y-JFS" id="yNT-qP-YFp">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L9f-1C-Cai" id="GTb-H8-DzC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addLocation" textLabel="AJE-Oz-172" style="IBUITableViewCellStyleDefault" id="MvB-bX-iV3">
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MvB-bX-iV3" id="JFT-0g-DbG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Добавить новое место" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AJE-Oz-172">
+                                            <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.22854566570000001" green="0.62776690719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="YAM-QN-Lzp" kind="show" id="auL-hL-gYg"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="T4w-yw-OtU" id="hcm-jY-fa6"/>
-                            <outlet property="delegate" destination="T4w-yw-OtU" id="qWW-EZ-vIN"/>
+                            <outlet property="dataSource" destination="dv8-9T-SXI" id="EJW-d6-hi1"/>
+                            <outlet property="delegate" destination="dv8-9T-SXI" id="YSd-xw-Iwc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Выберите город" id="8z8-Nf-IDK"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="hu3-BI-FKy" id="9AR-6s-hH5"/>
-                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SOG-Dk-6OU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="hu3-BI-FKy">
-                    <connections>
-                        <outlet property="delegate" destination="T4w-yw-OtU" id="6DD-0a-xyA"/>
-                        <outlet property="searchBar" destination="7Zh-Rk-88S" id="szI-50-ezy"/>
-                        <outlet property="searchContentsController" destination="T4w-yw-OtU" id="mKW-eA-ulL"/>
-                        <outlet property="searchResultsDataSource" destination="T4w-yw-OtU" id="wTd-Wt-iw6"/>
-                        <outlet property="searchResultsDelegate" destination="T4w-yw-OtU" id="lSK-f1-Yxk"/>
-                    </connections>
-                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x2k-Ei-u5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="1419"/>
+            <point key="canvasLocation" x="-311" y="1495"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="BPg-5f-Bf7">
+            <objects>
+                <viewController id="YAM-QN-Lzp" customClass="SearchViewController" customModule="WhatToWear" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a1u-dy-UJq"/>
+                        <viewControllerLayoutGuide type="bottom" id="tZY-5d-e8z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4ms-8g-AI8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="2ZL-RS-fHT">
+                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YAM-QN-Lzp" id="kZd-bG-jcC"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bdL-KY-I44">
+                                <rect key="frame" x="0.0" y="108" width="414" height="628"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YAM-QN-Lzp" id="Cmj-Y5-yfX"/>
+                                    <outlet property="delegate" destination="YAM-QN-Lzp" id="Nys-7u-fWQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2ZL-RS-fHT" firstAttribute="top" secondItem="a1u-dy-UJq" secondAttribute="bottom" id="0xw-D4-Tsg"/>
+                            <constraint firstItem="2ZL-RS-fHT" firstAttribute="leading" secondItem="4ms-8g-AI8" secondAttribute="leading" id="7th-lq-RC1"/>
+                            <constraint firstItem="bdL-KY-I44" firstAttribute="top" secondItem="2ZL-RS-fHT" secondAttribute="bottom" id="8we-qS-cZO"/>
+                            <constraint firstItem="bdL-KY-I44" firstAttribute="leading" secondItem="4ms-8g-AI8" secondAttribute="leading" id="Rxq-20-ebD"/>
+                            <constraint firstItem="tZY-5d-e8z" firstAttribute="top" secondItem="bdL-KY-I44" secondAttribute="bottom" id="XkI-W2-fIT"/>
+                            <constraint firstAttribute="trailing" secondItem="2ZL-RS-fHT" secondAttribute="trailing" id="sot-Vu-vtx"/>
+                            <constraint firstAttribute="trailing" secondItem="bdL-KY-I44" secondAttribute="trailing" id="vj7-7k-hIf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchResultsTableView" destination="bdL-KY-I44" id="eK2-Hu-dSa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bE0-hA-Xza" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="506" y="1494"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="yIj-KD-Ile">
@@ -713,7 +757,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efY-QR-0R9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="571"/>
+            <point key="canvasLocation" x="1014" y="571"/>
         </scene>
     </scenes>
     <resources>

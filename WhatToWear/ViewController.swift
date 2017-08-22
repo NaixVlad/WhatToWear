@@ -31,16 +31,16 @@ class ViewController: UIViewController {
         self.initViews()
         
         let locationServices = LocationServices.shared
-        let latitude = locationServices.currentLocation.coordinate.latitude
-        let longitude = locationServices.currentLocation.coordinate.longitude
+        let location = locationServices.selectedLocation
+        let latitude = location?.coordinate.latitude
+        let longitude = location?.coordinate.longitude
         
         let clientServices = ClientServices.shared
         let excludeFields: [Forecast.Field] = [.minutely, .daily, .flags, .alerts]
-        clientServices.getForecast(latitude: latitude, longitude: longitude, excludeFields: excludeFields) { result in
+        clientServices.getForecast(latitude: latitude!, longitude: longitude!, excludeFields: excludeFields) { result in
             switch result {
-            case .success(let forecast, let requestMetadata):
+            case .success(let forecast, _):
 
-                //print(requestMetadata)
                 DispatchQueue.main.async {
                     self.hourlyForecastData = (forecast.hourly?.data)!
                     
@@ -51,13 +51,14 @@ class ViewController: UIViewController {
             }
         }
         
-        locationServices.getAdress { address, error in
+        /*locationServices.getAdress { address, error in
             
             if let a = address, let city = a["City"] as? String {
                 self.cityNameButton.titleLabel?.text = city
             }
-        }
+        }*/
         
+        self.cityNameButton.titleLabel?.text = locationServices.getAdressFromSelectedLocation()
         
 
     }
@@ -106,8 +107,7 @@ class ViewController: UIViewController {
         
         for i in 0..<hourlyForecastData.count {
             let data = hourlyForecastData[i]
-            //print(data)
-            //print("\n")
+
             var hour = data.time.getHour()
             if i == 0 {
                 hour = "Сейчас"
@@ -130,21 +130,6 @@ class ViewController: UIViewController {
         ClientServices.shared.redirectToDarkSky()
         
     }
-
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showDailyForecast") {
-            let destinationVC = segue.destination as! DailyForecastTableViewController
-            destinationVC.dailyForecastData = self.dailyForecastData
-        }
-    }*/
-
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 

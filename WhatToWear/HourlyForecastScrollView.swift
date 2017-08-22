@@ -144,7 +144,8 @@ class HourlyForecastScrollView: UIScrollView {
             let x: CGFloat = i * unitSize - unitSize / 2
             let labelRect = CGRect(x: x, y: height/2, width: unitSize, height: height/2)
             let label = UILabel(frame: labelRect)
-            let intTemperature = Int(temperature)
+            let temperature = Temperature(value: temperature)
+            let intTemperature = Int(temperature.value)
             label.text = intTemperature.description + "°"
             label.textAlignment = .center
             label.font = UIFont (name: "HelveticaNeue-Light", size: 10)

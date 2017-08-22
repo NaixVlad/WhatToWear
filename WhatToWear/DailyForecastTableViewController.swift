@@ -59,11 +59,9 @@ class DailyForecastViewController: UIViewController {
     private func setupTableView() {
         tableView.isHidden = true
 
-        // Configure Refresh Control
         refreshControl.tintColor = refreshControlTintColor
         refreshControl.addTarget(self, action: #selector(DailyForecastViewController.refreshWeatherData(sender:)), for: .valueChanged)
         
-        // Add to Table View
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
@@ -86,7 +84,7 @@ class DailyForecastViewController: UIViewController {
     
     // MARK: - Actions
     
-    func refreshWeatherData(sender: UIRefreshControl) {
+    @objc func refreshWeatherData(sender: UIRefreshControl) {
         fetchWeatherData()
     }
     
@@ -103,15 +101,16 @@ class DailyForecastViewController: UIViewController {
     private func fetchWeatherData() {
         
         let locationServices = LocationServices.shared
-        let latitude = locationServices.currentLocation.coordinate.latitude
-        let longitude = locationServices.currentLocation.coordinate.longitude
+        let location = locationServices.selectedLocation
+        let latitude = location?.coordinate.latitude
+        let longitude = location?.coordinate.longitude
         
         let clientServices = ClientServices.shared
         let excludeFields: [Forecast.Field] = [.minutely, .flags, .alerts]
-        clientServices.getForecast(latitude: latitude, longitude: longitude,
+        clientServices.getForecast(latitude: latitude!, longitude: longitude!,
                                    extendHourly: true, excludeFields: excludeFields) { result in
                                     switch result {
-                                    case .success(let forecast, let requestMetadata):
+                                    case .success(let forecast, _):
                                         
                                         DispatchQueue.main.async {
                                             
@@ -138,10 +137,6 @@ class DailyForecastViewController: UIViewController {
 
 extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -179,8 +174,12 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
             cell.dateValueLabel.text = data.time.format("dd:MM:yy")
             
             let defaultFloat: Float = 0.0
-            cell.temperatureMinValueLabel.text = (Int(data.temperatureMin ?? defaultFloat)).description
-            cell.temperatureMaxValueLabel.text = (Int(data.temperatureMax ?? defaultFloat)).description
+            let temperatureMin = Temperature(value: data.temperatureMin!)
+            let temperatureMax = Temperature(value: data.temperatureMax!)
+            let intTemperatureMin = Int(temperatureMin.value)
+            let intTemperatureMax = Int(temperatureMax.value)
+            cell.temperatureMinValueLabel.text = intTemperatureMin.description
+            cell.temperatureMaxValueLabel.text = intTemperatureMax.description
             
             let deafaultTime = "0:00"
             cell.sunriseTimeValueLabel.text = "\(data.sunriseTime?.getTime() ?? deafaultTime)"
@@ -192,7 +191,9 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
             let strHumidity = data.humidity?.percent.description
             cell.humidityValueLabel.text = (strHumidity ?? "0") + "%"
             
-            cell.windSpeedValueLabel.text = "\(data.windSpeed ?? 0)"
+            let windSpeed = Speed(value: data.windSpeed!)
+            let speed = Int(windSpeed.value)
+            cell.windSpeedValueLabel.text = speed.description + windSpeed.measurement.rawValue
             
             let compasPoint = CompassPoint(degrees: (data.windBearing ?? defaultFloat))
             cell.windBearingValueLabel.text = compasPoint.description

@@ -100,14 +100,13 @@ class DailyForecastViewController: UIViewController {
     
     private func fetchWeatherData() {
         
-        let locationServices = LocationServices.shared
-        let location = locationServices.selectedLocation
-        let latitude = location?.coordinate.latitude
-        let longitude = location?.coordinate.longitude
+        let location = LocationServices.shared.selectedLocation.location
+        let latitude = location.latitude
+        let longitude = location.longitude
         
         let clientServices = ClientServices.shared
         let excludeFields: [Forecast.Field] = [.minutely, .flags, .alerts]
-        clientServices.getForecast(latitude: latitude!, longitude: longitude!,
+        clientServices.getForecast(latitude: latitude, longitude: longitude,
                                    extendHourly: true, excludeFields: excludeFields) { result in
                                     switch result {
                                     case .success(let forecast, _):
@@ -133,7 +132,6 @@ class DailyForecastViewController: UIViewController {
     
 }
 
-// MARK: - Table view data source
 
 extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -218,10 +216,7 @@ extension DailyForecastViewController: UITableViewDataSource, UITableViewDelegat
             
         }
         
-        
     }
-    
-    
     
     // MARK: - Table view delegate
     

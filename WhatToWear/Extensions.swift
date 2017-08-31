@@ -8,6 +8,22 @@
 
 import Foundation
 import ForecastIO
+import SceneKit
+
+extension CAAnimation {
+    class func animationWithSceneNamed(_ name: String) -> CAAnimation? {
+        var animation: CAAnimation?
+        if let scene = SCNScene(named: name) {
+            scene.rootNode.enumerateChildNodes({ (child, stop) in
+                if child.animationKeys.count > 0 {
+                    animation = child.animation(forKey: child.animationKeys.first!)
+                    stop.initialize(to: true)
+                }
+            })
+        }
+        return animation
+    }
+}
 
 extension Icon {
     func getImage() -> UIImage {
@@ -336,10 +352,10 @@ extension DataBlock {
         return daysBlocks
         
     }
+}
 
-    
 
-    
-    
+extension Notification.Name {
+    static let locationChanged = Notification.Name("locationChanged")
 }
 

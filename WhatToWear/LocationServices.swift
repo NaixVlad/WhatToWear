@@ -11,38 +11,87 @@ import CoreLocation
 import CoreData
 
 let kSelectedLocation = "selectedLocation"
+let kIdOfSelectedLocation = "indexOfSelectedLocation"
+let kTypeOfSelectedLocation = "typeOfSelectedLocation"
 
 typealias JSONDictionary = [String:Any]
+typealias SelectedLocation = (type: SelectedLocationType, location: Place)
 
-class LocationServices {
+enum SelectedLocationType: Int {
+    case autodetection
+    case manual
+}
+
+class LocationServices: NSObject {
     
     static let shared = LocationServices()
     
-    private let locManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
-    var selectedLocation: CLLocation! {
+    
+    fileprivate override init() {
+        super.init()
+        self.locationManager.requestWhenInUseAuthorization()
+        //locationManager.delegate = self as? CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.startUpdatingLocation()
+    }
+    
+    var currentLocation: CLLocation? {
         get {
-            if let value = UserDefaults.standard.object(forKey: kSelectedLocation) as? CLLocation {
-                return value
-            } else {
-                return CLLocation(latitude: 53.798517, longitude: 99.185847)
+            return locationManager.location
+        }
+    }
+    
+    var selectedLocation: SelectedLocation {
+        get {
+            
+            let typeRawValue = UserDefaults.standard.integer(forKey: kTypeOfSelectedLocation)
+            let type = SelectedLocationType(rawValue: typeRawValue)!
+            
+            
+            switch type {
+            case .autodetection:
+                if CLLocationManager.locationServicesEnabled() {
+                    return (type, locationManager.location!)
+                }
+            case .manual:
+                if let urlString = UserDefaults.standard.string(forKey: kIdOfSelectedLocation) {
+                    let manager = CoreDataManager.instance
+                    let context = manager.managedObjectContext
+                    let url = URL(string: urlString)
+                    let id = manager.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url!)
+                    let location = context.object(with: id!) as! Location
+                    return (type, location)
+                }
             }
+            
+            let defaultLocation = CLLocation(latitude: 53.798517, longitude: 99.185847)
+            return (.manual, defaultLocation)
+            
         }
         
         set {
             
-            //UserDefaults.standard.set()
+            let (type, place) = newValue
             
+            switch type {
+            case .autodetection:
+                UserDefaults.standard.set(type.rawValue, forKey: kTypeOfSelectedLocation)
+            case .manual:
+                let location = place as! Location
+                let id = location.objectID.uriRepresentation().absoluteString
+                UserDefaults.standard.set(type.rawValue, forKey: kTypeOfSelectedLocation)
+                UserDefaults.standard.setValue(id, forKey: kIdOfSelectedLocation)
+            }
         }
     }
     
-    let authStatus = CLLocationManager.authorizationStatus()
-    let inUse = CLAuthorizationStatus.authorizedWhenInUse
-    let always = CLAuthorizationStatus.authorizedAlways
-    
-    func getAdressFromLocation(_ location: CLLocation, completion: @escaping (_ address: JSONDictionary?, _ error: Error?) -> ()) {
+    func getCurrentLocationAddress(completion: @escaping (_ address: JSONDictionary?, _ error: Error?) -> ()) {
+        
+        if CLLocationManager.locationServicesEnabled() {
             
-            geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            geocoder.reverseGeocodeLocation(self.currentLocation!) { placemarks, error in
                 
                 if let e = error {
                     
@@ -50,10 +99,12 @@ class LocationServices {
                     
                 } else {
                     
+                    let placeArray = placemarks as? [CLPlacemark]
+                    
                     var placeMark: CLPlacemark!
                     
-                    placeMark = placemarks?[0]
-                    //print(placemarks)
+                    placeMark = placeArray?[0]
+                    
                     guard let address = placeMark.addressDictionary as? JSONDictionary else {
                         return
                     }
@@ -61,78 +112,19 @@ class LocationServices {
                     completion(address, nil)
                     
                 }
-                
-            
-        }
-        
-    }
-    
-    func getAdressFromCurentLocation() -> String {
-        
-        self.locManager.requestWhenInUseAuthorization()
-        
-        if self.authStatus == inUse || self.authStatus == always {
-            
-            return getAdressFromLocation(locManager.location!)
-            
-        } else {
-            
-            return ""
-            
-        }
-        
-    }
-    
-    func getAdressFromSelectedLocation() -> String {
-        
-        self.locManager.requestWhenInUseAuthorization()
-        
-        if self.authStatus == inUse || self.authStatus == always {
-            
-            return getAdressFromLocation(self.selectedLocation)
-            
-        } else {
-            
-            return ""
-            
-        }
-        
-    }
-    
-    func currentLocation() -> CLLocation {
-        return locManager.location!
-    }
-    
-    
-    
-    //MARK: - Helpers
-        
-    func getAdressFromLocation(_ location: CLLocation) -> String {
-        
-        var adress = "А"
-        self.geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
-            
-            print(placemarks)
-            
-            if let e = error {
-                print("Reverse geocoder failed with error" + (e.localizedDescription))
-                return
             }
-            if (placemarks?.count)! > 0 {
-                let pm = placemarks?[0] as! CLPlacemark
-                adress = "\(pm.locality), \(pm.country)"
-            } else {
-                print("Problem with the data received from geocoder")
-            }
-        })
-        
-        return adress
+        }
     }
-    
-    
-    fileprivate init() {
-        self.locManager.requestWhenInUseAuthorization()
-        locManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
 }
+/*
+
+extension LocationServices: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        
+        currentLocation = newLocation
+        
+        print("old location: \(oldLocation), new location: \(newLocation)")
+        
+    }
+}*/

@@ -8,25 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		8364B1261F20CF9500E4A92F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1251F20CF9500E4A92F /* AppDelegate.swift */; };
-		8364B1281F20CF9500E4A92F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1271F20CF9500E4A92F /* ViewController.swift */; };
+		8364B1281F20CF9500E4A92F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1271F20CF9500E4A92F /* MainViewController.swift */; };
 		8364B12B1F20CF9500E4A92F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8364B1291F20CF9500E4A92F /* Main.storyboard */; };
 		8364B12D1F20CF9500E4A92F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8364B12C1F20CF9500E4A92F /* Assets.xcassets */; };
 		8364B1301F20CF9500E4A92F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8364B12E1F20CF9500E4A92F /* LaunchScreen.storyboard */; };
 		8364B1381F2211BF00E4A92F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8364B1371F2211BF00E4A92F /* Podfile */; };
 		8364B13A1F224F1400E4A92F /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1391F224F1300E4A92F /* LocationServices.swift */; };
 		8364B13C1F238D6F00E4A92F /* DailyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */; };
+		837A5D0D1F55D0BC0048A2F8 /* WhatToWear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 837A5D0B1F55D0BC0048A2F8 /* WhatToWear.xcdatamodeld */; };
+		837A5D0F1F56DD050048A2F8 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837A5D0E1F56DD050048A2F8 /* CityCell.swift */; };
+		837AC1F11F58144C003741FB /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 837AC1F01F58144C003741FB /* art.scnassets */; };
+		837AC1F31F58144E003741FB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837AC1F21F58144E003741FB /* Character.swift */; };
+		837AC1F51F581480003741FB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837AC1F41F581480003741FB /* GameViewController.swift */; };
 		8399BA3E1F247E8100E216FE /* ClientServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399BA3D1F247E8100E216FE /* ClientServices.swift */; };
 		8399BA441F24847D00E216FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399BA431F24847D00E216FE /* Extensions.swift */; };
+		83B83B691F4DE9230098EE4D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B83B681F4DE9230098EE4D /* Location.swift */; };
+		83B83B6B1F4DE9550098EE4D /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B83B6A1F4DE9550098EE4D /* Location+CoreDataProperties.swift */; };
 		83BF4EC01F49F38100839266 /* CompasPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EBF1F49F38100839266 /* CompasPoint.swift */; };
 		83BF4EC81F4A18CF00839266 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EC71F4A18CF00839266 /* SettingsViewController.swift */; };
 		83BF4ECA1F4B207E00839266 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EC91F4B207E00839266 /* Settings.swift */; };
 		83BF4ECC1F4B342100839266 /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4ECB1F4B342100839266 /* Measurements.swift */; };
 		83BF4ED31F4C4B9200839266 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4ED21F4C4B9200839266 /* SearchViewController.swift */; };
 		83BF4ED71F4C63F200839266 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BF4ED51F4C63F200839266 /* Tutorial.storyboard */; };
-		83BF4EDA1F4C842F00839266 /* WhatToWear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4ED81F4C842F00839266 /* WhatToWear.xcdatamodeld */; };
 		83BF4EFD1F4C875D00839266 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EFC1F4C875D00839266 /* CoreDataManager.swift */; };
-		83BF4F001F4C8C6400839266 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EFE1F4C8C6400839266 /* Location+CoreDataClass.swift */; };
-		83BF4F011F4C8C6400839266 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4EFF1F4C8C6400839266 /* Location+CoreDataProperties.swift */; };
 		83BF4F031F4C93FF00839266 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BF4F021F4C93FF00839266 /* PlacesViewController.swift */; };
 		83C312481F24BF58004A6A50 /* DayForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C312471F24BF58004A6A50 /* DayForecastCell.swift */; };
 		83C3124A1F25B051004A6A50 /* HourlyForecastScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */; };
@@ -38,7 +42,7 @@
 		0D450AEF97FB63A4D17F7BCE /* Pods-WhatToWear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatToWear.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatToWear/Pods-WhatToWear.debug.xcconfig"; sourceTree = "<group>"; };
 		8364B1221F20CF9500E4A92F /* WhatToWear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8364B1251F20CF9500E4A92F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8364B1271F20CF9500E4A92F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8364B1271F20CF9500E4A92F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8364B12A1F20CF9500E4A92F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8364B12C1F20CF9500E4A92F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8364B12F1F20CF9500E4A92F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,18 +50,22 @@
 		8364B1371F2211BF00E4A92F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8364B1391F224F1300E4A92F /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecastTableViewController.swift; sourceTree = "<group>"; };
+		837A5D0C1F55D0BC0048A2F8 /* WhatToWear.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWear.xcdatamodel; sourceTree = "<group>"; };
+		837A5D0E1F56DD050048A2F8 /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		837AC1F01F58144C003741FB /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		837AC1F21F58144E003741FB /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		837AC1F41F581480003741FB /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8399BA3D1F247E8100E216FE /* ClientServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientServices.swift; sourceTree = "<group>"; };
 		8399BA431F24847D00E216FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		83B83B681F4DE9230098EE4D /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		83B83B6A1F4DE9550098EE4D /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83BF4EBF1F49F38100839266 /* CompasPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompasPoint.swift; sourceTree = "<group>"; };
 		83BF4EC71F4A18CF00839266 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		83BF4EC91F4B207E00839266 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		83BF4ECB1F4B342100839266 /* Measurements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurements.swift; sourceTree = "<group>"; };
 		83BF4ED21F4C4B9200839266 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		83BF4ED61F4C63F200839266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tutorial.storyboard; sourceTree = "<group>"; };
-		83BF4ED91F4C842F00839266 /* WhatToWear.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWear.xcdatamodel; sourceTree = "<group>"; };
 		83BF4EFC1F4C875D00839266 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		83BF4EFE1F4C8C6400839266 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
-		83BF4EFF1F4C8C6400839266 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83BF4F021F4C93FF00839266 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		83C312471F24BF58004A6A50 /* DayForecastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayForecastCell.swift; sourceTree = "<group>"; };
 		83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyForecastScrollView.swift; sourceTree = "<group>"; };
@@ -116,10 +124,11 @@
 				8364B1291F20CF9500E4A92F /* Main.storyboard */,
 				83BF4ED51F4C63F200839266 /* Tutorial.storyboard */,
 				8364B12E1F20CF9500E4A92F /* LaunchScreen.storyboard */,
+				837A5D0B1F55D0BC0048A2F8 /* WhatToWear.xcdatamodeld */,
 				8364B12C1F20CF9500E4A92F /* Assets.xcassets */,
+				837AC1F01F58144C003741FB /* art.scnassets */,
 				8364B1311F20CF9500E4A92F /* Info.plist */,
 				8364B1371F2211BF00E4A92F /* Podfile */,
-				83BF4ED81F4C842F00839266 /* WhatToWear.xcdatamodeld */,
 			);
 			path = WhatToWear;
 			sourceTree = "<group>";
@@ -129,6 +138,7 @@
 			children = (
 				83C312491F25B051004A6A50 /* HourlyForecastScrollView.swift */,
 				83C312471F24BF58004A6A50 /* DayForecastCell.swift */,
+				837A5D0E1F56DD050048A2F8 /* CityCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -147,7 +157,8 @@
 		83BF4ED11F4B6D5400839266 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8364B1271F20CF9500E4A92F /* ViewController.swift */,
+				837AC1F41F581480003741FB /* GameViewController.swift */,
+				8364B1271F20CF9500E4A92F /* MainViewController.swift */,
 				8364B13B1F238D6E00E4A92F /* DailyForecastTableViewController.swift */,
 				83BF4EC71F4A18CF00839266 /* SettingsViewController.swift */,
 				83BF4ED21F4C4B9200839266 /* SearchViewController.swift */,
@@ -159,8 +170,9 @@
 		83BF4ED41F4C52B200839266 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				83BF4EFE1F4C8C6400839266 /* Location+CoreDataClass.swift */,
-				83BF4EFF1F4C8C6400839266 /* Location+CoreDataProperties.swift */,
+				837AC1F21F58144E003741FB /* Character.swift */,
+				83B83B681F4DE9230098EE4D /* Location.swift */,
+				83B83B6A1F4DE9550098EE4D /* Location+CoreDataProperties.swift */,
 				83BF4ECB1F4B342100839266 /* Measurements.swift */,
 				83BF4EBF1F49F38100839266 /* CompasPoint.swift */,
 				83C3124B1F25B1DE004A6A50 /* WeatherBlock.swift */,
@@ -241,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BF4ED71F4C63F200839266 /* Tutorial.storyboard in Resources */,
+				837AC1F11F58144C003741FB /* art.scnassets in Resources */,
 				8364B1301F20CF9500E4A92F /* LaunchScreen.storyboard in Resources */,
 				8364B12D1F20CF9500E4A92F /* Assets.xcassets in Resources */,
 				8364B1381F2211BF00E4A92F /* Podfile in Resources */,
@@ -303,24 +316,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8364B1281F20CF9500E4A92F /* ViewController.swift in Sources */,
+				8364B1281F20CF9500E4A92F /* MainViewController.swift in Sources */,
 				83BF4ECA1F4B207E00839266 /* Settings.swift in Sources */,
+				837A5D0F1F56DD050048A2F8 /* CityCell.swift in Sources */,
 				8399BA441F24847D00E216FE /* Extensions.swift in Sources */,
 				83C3124C1F25B1DE004A6A50 /* WeatherBlock.swift in Sources */,
-				83BF4F001F4C8C6400839266 /* Location+CoreDataClass.swift in Sources */,
+				83B83B691F4DE9230098EE4D /* Location.swift in Sources */,
 				8364B13A1F224F1400E4A92F /* LocationServices.swift in Sources */,
 				8364B13C1F238D6F00E4A92F /* DailyForecastTableViewController.swift in Sources */,
 				8399BA3E1F247E8100E216FE /* ClientServices.swift in Sources */,
+				837AC1F31F58144E003741FB /* Character.swift in Sources */,
 				83BF4ECC1F4B342100839266 /* Measurements.swift in Sources */,
 				83BF4ED31F4C4B9200839266 /* SearchViewController.swift in Sources */,
-				83BF4EDA1F4C842F00839266 /* WhatToWear.xcdatamodeld in Sources */,
+				83B83B6B1F4DE9550098EE4D /* Location+CoreDataProperties.swift in Sources */,
 				8364B1261F20CF9500E4A92F /* AppDelegate.swift in Sources */,
 				83C312481F24BF58004A6A50 /* DayForecastCell.swift in Sources */,
+				837A5D0D1F55D0BC0048A2F8 /* WhatToWear.xcdatamodeld in Sources */,
 				83BF4EC81F4A18CF00839266 /* SettingsViewController.swift in Sources */,
 				83BF4F031F4C93FF00839266 /* PlacesViewController.swift in Sources */,
-				83BF4F011F4C8C6400839266 /* Location+CoreDataProperties.swift in Sources */,
 				83BF4EC01F49F38100839266 /* CompasPoint.swift in Sources */,
 				83BF4EFD1F4C875D00839266 /* CoreDataManager.swift in Sources */,
+				837AC1F51F581480003741FB /* GameViewController.swift in Sources */,
 				83C3124A1F25B051004A6A50 /* HourlyForecastScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,14 +516,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		83BF4ED81F4C842F00839266 /* WhatToWear.xcdatamodeld */ = {
+		837A5D0B1F55D0BC0048A2F8 /* WhatToWear.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				83BF4ED91F4C842F00839266 /* WhatToWear.xcdatamodel */,
+				837A5D0C1F55D0BC0048A2F8 /* WhatToWear.xcdatamodel */,
 			);
-			currentVersion = 83BF4ED91F4C842F00839266 /* WhatToWear.xcdatamodel */;
+			currentVersion = 837A5D0C1F55D0BC0048A2F8 /* WhatToWear.xcdatamodel */;
 			path = WhatToWear.xcdatamodeld;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */

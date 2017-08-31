@@ -26,7 +26,12 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
             print(error)
         }
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+
+        
+        //self.tableView.register(CityCell.classForCoder(), forCellReuseIdentifier:"location")
+        //self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier:"default")
     }
+    
     
     // MARK: - Table view data source
 
@@ -35,6 +40,7 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         if let sections = fetchedResultsController.sections {
             countOfCells = sections[section].numberOfObjects + 2
+            print(sections[section].numberOfObjects)
         }
         
         return countOfCells
@@ -48,121 +54,111 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
         let row = indexPath.row
 
         let locationIdentifier = "location"
+        let defaultIdentifier = "default"
         
         if  row == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: locationIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: defaultIdentifier, for: indexPath)
             
-            cell.imageView?.image = #imageLiteral(resourceName: "location")
-            //cell.textLabel?.text = "Текущее местоположение"
-            cell.textLabel?.text = LocationServices.shared.getAdressFromCurentLocation()
-            //let strLocation = LocationServices.shared.getAdressFromCurentLocation()
-            //cell.detailTextLabel?.text = strLocation
+            cell.imageView?.image = #imageLiteral(resourceName: "geolocation")
+            
+            LocationServices.shared.getCurrentLocationAddress(completion: { (address, error) in
+                
+                if let a = address, let city = a["City"] as? String {
+                    cell.textLabel?.text = city
+                } else {
+                    cell.textLabel?.text = "Текущая геопозиция недоступна"
+                }
+            })
             
             return cell
             
         }
         
         if  row == countOfCells - 1 {
-            let addLocationIdentifier = "addLocation"
-            let cell = tableView.dequeueReusableCell(withIdentifier: addLocationIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: defaultIdentifier, for: indexPath)
+            cell.imageView?.image = #imageLiteral(resourceName: "add")
+            cell.textLabel?.text = "Добавить"
             return cell
         }
         
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: locationIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: locationIdentifier, for: indexPath) as! CityCell
         
-        
-        
-        
-        DispatchQueue.global(qos: .background).async {
-            let index = IndexPath(row: row - 1, section: indexPath.section)
-            let coordinate = self.fetchedResultsController.object(at: index) as! Location
-            let loc = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            LocationServices.shared.getAdressFromLocation(loc, completion: { (adress, error) in
-                if let a = adress, let city = a["City"] as? String {
-                    
-                    DispatchQueue.main.async {
-                        cell.textLabel?.text  = city
-                    }
-                }
-            })
-
-        }
-
-        
+        cell.imageView?.image = #imageLiteral(resourceName: "map")
+        let indexPathWithOffset = IndexPath(row: row - 1, section: indexPath.section)
+        let place = fetchedResultsController.object(at: indexPathWithOffset) as! Location
+        cell.textLabel?.text  = place.title
+    
         
         return cell
         
     }
     
-    
+
     // MARK: - Fetched Results Controller Delegate
     
-    /*func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        /*switch type {
-            
-        case .insert:
-            if let indexPath = newIndexPath {
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-            
-        case .update:
-            if let indexPath = indexPath {
-                let location = fetchedResultsController.object(at: indexPath) as! Location
-                let cell = tableView.cellForRow(at: indexPath)
-                cell!.textLabel?.text = customer.name
-            }
-            
-        case .move:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-            
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-        }*/
+        if type == .delete, let indexPath = indexPath {
+            let indexPathWithOffset = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            self.tableView.deleteRows(at: [indexPathWithOffset], with: .automatic)
+        }
+        
+        
+        if type == .insert, let indexPath = newIndexPath {
+            let indexPathWithOffset = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            tableView.insertRows(at: [indexPathWithOffset], with: .automatic)
+        }
+        
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+        self.tableView.endUpdates()
     }
 
-    */
+
     // MARK: - Table view delegate
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 || indexPath.row == countOfCells - 1 {
+        let locationServices = LocationServices.shared
+        
+        if indexPath.row != 0 && indexPath.row != countOfCells - 1 {
             
+            let indexPathWithOffset = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            let place = fetchedResultsController.object(at: indexPathWithOffset) as! Location
+            place.timesSelected += 1
+            CoreDataManager.instance.saveContext()
+            
+            locationServices.selectedLocation = SelectedLocation(.manual, place)
+
+            self.navigationController?.popViewController(animated: true)
+            
+        }
+        
+        if indexPath.row == 0  {
+            locationServices.selectedLocation.type = .autodetection
+            self.navigationController?.popViewController(animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
-        
     }
-    
-
+ 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         if indexPath.row == 0 || indexPath.row == countOfCells - 1 {
             return false
         }
-        
+ 
         return true
         
     }
@@ -170,23 +166,14 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let indexPathWithOffset = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            let managedObject = fetchedResultsController.object(at: indexPathWithOffset) as! NSManagedObject
+            CoreDataManager.instance.managedObjectContext.delete(managedObject)
+            CoreDataManager.instance.saveContext()
+        }
+        
     }
 
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

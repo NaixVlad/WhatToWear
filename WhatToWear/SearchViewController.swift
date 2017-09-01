@@ -20,6 +20,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         searchCompleter.delegate = self
         searchCompleter.filterType = .locationsOnly
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,16 +54,32 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
             
-            let location = response?.mapItems[0].placemark.location
+            if let r = response {
             
-            let place = Location()
-            place.latitude = (location?.coordinate.latitude)!
-            place.longitude = (location?.coordinate.longitude)!
-            place.timesSelected = 1
-            place.title = response?.mapItems[0].placemark.title
-            
-            CoreDataManager.instance.saveContext()
-            self.navigationController?.popViewController(animated: true)
+                let placemark = r.mapItems[0].placemark
+                
+                let location = placemark.location!
+                
+                
+                if let city = placemark.addressDictionary?["City"] as? String {
+                    
+                    let place = Location()
+                    place.latitude = location.coordinate.latitude
+                    place.longitude = location.coordinate.longitude
+                    place.timesSelected = 1
+                    place.title = city
+                    
+                    CoreDataManager.instance.saveContext()
+                    self.navigationController?.popViewController(animated: true)
+                    
+                } else {
+                    let title = "Выберите более кокретное местоположение"
+                    let alert = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
+                    let action = UIAlertAction(title: "ok", style: .default , handler: nil)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
 
         }
     }
@@ -74,6 +94,24 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             attributedText.addAttribute(NSFontAttributeName, value:bold, range:value.rangeValue)
         }
         return attributedText
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        
+        var info = notification.userInfo
+        
+        if let value = info?[UIKeyboardFrameBeginUserInfoKey] as? NSValue {
+            let keyboardSize = value.cgRectValue.size
+            searchResultsTableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+            searchResultsTableView.scrollIndicatorInsets = searchResultsTableView.contentInset
+        }
+        
+        
+    }
+    @objc func keyboardWillHide(_ notification:Notification) {
+        
+        searchResultsTableView.contentInset = UIEdgeInsets.zero
+        searchResultsTableView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
 }
@@ -92,9 +130,6 @@ extension SearchViewController: MKLocalSearchCompleterDelegate {
         searchResults = completer.results
         searchResultsTableView.reloadData()
     }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        // handle error
-    }
+
 }
 

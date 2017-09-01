@@ -11,11 +11,11 @@ import CoreLocation
 import CoreData
 
 let kSelectedLocation = "selectedLocation"
-let kIdOfSelectedLocation = "indexOfSelectedLocation"
+let kUrlOfSelectedLocation = "indexOfSelectedLocation"
 let kTypeOfSelectedLocation = "typeOfSelectedLocation"
 
 typealias JSONDictionary = [String:Any]
-typealias SelectedLocation = (type: SelectedLocationType, location: Place)
+typealias SelectedLocation = (type: SelectedLocationType, location: Place?)
 
 enum SelectedLocationType: Int {
     case autodetection
@@ -31,43 +31,47 @@ class LocationServices: NSObject {
     
     fileprivate override init() {
         super.init()
-        self.locationManager.requestWhenInUseAuthorization()
-        //locationManager.delegate = self as? CLLocationManagerDelegate
+        self.selectedLocation.type = .manual
+        locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.startUpdatingLocation()
-    }
-    
-    var currentLocation: CLLocation? {
-        get {
-            return locationManager.location
-        }
+        locationManager.requestWhenInUseAuthorization()
+
     }
     
     var selectedLocation: SelectedLocation {
         get {
             
             let typeRawValue = UserDefaults.standard.integer(forKey: kTypeOfSelectedLocation)
-            let type = SelectedLocationType(rawValue: typeRawValue)!
+            
+            if let type = SelectedLocationType(rawValue: typeRawValue) {
+                
             
             
-            switch type {
-            case .autodetection:
-                if CLLocationManager.locationServicesEnabled() {
-                    return (type, locationManager.location!)
-                }
-            case .manual:
-                if let urlString = UserDefaults.standard.string(forKey: kIdOfSelectedLocation) {
-                    let manager = CoreDataManager.instance
-                    let context = manager.managedObjectContext
-                    let url = URL(string: urlString)
-                    let id = manager.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url!)
-                    let location = context.object(with: id!) as! Location
-                    return (type, location)
+                switch type {
+                case .autodetection:
+                    
+                    return (type, locationManager.location)
+                    
+                case .manual:
+                    if let urlString = UserDefaults.standard.string(forKey: kUrlOfSelectedLocation) {
+                        let manager = CoreDataManager.instance
+                        let context = manager.managedObjectContext
+                        let url = URL(string: urlString)
+                        let urlString = manager.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url!)
+                        let location = context.object(with: urlString!) as! Location
+                        return (type, location)
+                    }
                 }
             }
             
-            let defaultLocation = CLLocation(latitude: 53.798517, longitude: 99.185847)
-            return (.manual, defaultLocation)
+            let defaultType = SelectedLocationType.manual
+            let defaultLocation = getDefaultLocation()
+            
+            let urlString = defaultLocation.objectID.uriRepresentation().absoluteString
+            UserDefaults.standard.set(defaultType.rawValue, forKey: kTypeOfSelectedLocation)
+            UserDefaults.standard.setValue(urlString, forKey: kUrlOfSelectedLocation)
+            
+            return (defaultType, defaultLocation)
             
         }
         
@@ -79,19 +83,20 @@ class LocationServices: NSObject {
             case .autodetection:
                 UserDefaults.standard.set(type.rawValue, forKey: kTypeOfSelectedLocation)
             case .manual:
-                let location = place as! Location
-                let id = location.objectID.uriRepresentation().absoluteString
+                let location = place as? Location ?? getDefaultLocation()
+                let urlString = location.objectID.uriRepresentation().absoluteString
                 UserDefaults.standard.set(type.rawValue, forKey: kTypeOfSelectedLocation)
-                UserDefaults.standard.setValue(id, forKey: kIdOfSelectedLocation)
+                UserDefaults.standard.setValue(urlString, forKey: kUrlOfSelectedLocation)
+                    
             }
         }
     }
     
     func getCurrentLocationAddress(completion: @escaping (_ address: JSONDictionary?, _ error: Error?) -> ()) {
         
-        if CLLocationManager.locationServicesEnabled() {
+        if CLLocationManager.locationServicesEnabled(), let loc = locationManager.location  {
             
-            geocoder.reverseGeocodeLocation(self.currentLocation!) { placemarks, error in
+            geocoder.reverseGeocodeLocation(loc) { placemarks, error in
                 
                 if let e = error {
                     
@@ -99,7 +104,7 @@ class LocationServices: NSObject {
                     
                 } else {
                     
-                    let placeArray = placemarks as? [CLPlacemark]
+                    let placeArray = placemarks
                     
                     var placeMark: CLPlacemark!
                     
@@ -113,18 +118,29 @@ class LocationServices: NSObject {
                     
                 }
             }
+            
+        } else {
+            completion(nil, nil)
         }
     }
-}
-/*
-
-extension LocationServices: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-        
-        currentLocation = newLocation
-        
-        print("old location: \(oldLocation), new location: \(newLocation)")
-        
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            
+            self.selectedLocation.type = .autodetection
+            
+        }
     }
-}*/
+    
+    func getDefaultLocation() -> Location {
+
+        let defaultLocation = Location()
+        defaultLocation.latitude = 53.798517
+        defaultLocation.longitude = 99.185847
+        defaultLocation.timesSelected = 1
+        defaultLocation.title = "Москва"
+        CoreDataManager.instance.saveContext()
+        
+        return defaultLocation
+    }
+}

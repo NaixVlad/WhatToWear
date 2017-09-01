@@ -13,16 +13,10 @@ class Character {
     
     var sex: Sex {
         didSet {
-            let characterScene: SCNScene
-            switch sex {
-            case .male:
-                characterScene = SCNScene(named: "art.scnassets/Male.scn")!
-                
-            case .female:
-                characterScene = SCNScene(named: "art.scnassets/girl.scn")!
-            }
             
-            self.node = characterScene.rootNode.childNodes[0]
+            let scene = chooseScene(sex: sex)
+            self.node = scene.rootNode.childNodes[0]
+            
         }
     }
     
@@ -40,13 +34,13 @@ class Character {
     
     init(sex: Sex) {
         self.sex = sex
-        print(sex)
-        for node in self.node.childNodes {
-            print(node.name)
-        }
+        let scene = chooseScene(sex: sex)
+        self.node = scene.rootNode.childNodes[0]
         setupAnimations()
         
     }
+    
+    
     
     func setupAnimations() {
         walkAnimation = CAAnimation.animationWithSceneNamed("art.scnassets/walk.dae")!
@@ -70,5 +64,18 @@ class Character {
         }
     }
     
+    private func chooseScene(sex: Sex) -> SCNScene {
+        let characterScene: SCNScene
+        switch sex {
+        case .male:
+            characterScene = SCNScene(named: "art.scnassets/Male.scn")!
+            
+        case .female:
+            characterScene = SCNScene(named: "art.scnassets/girl.scn")!
+        }
+        
+        return characterScene
+        
+    }
     
 }

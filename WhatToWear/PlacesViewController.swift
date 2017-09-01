@@ -26,10 +26,7 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
             print(error)
         }
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-
         
-        //self.tableView.register(CityCell.classForCoder(), forCellReuseIdentifier:"location")
-        //self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier:"default")
     }
     
     
@@ -53,21 +50,26 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let row = indexPath.row
 
+        let currentLocationIdentifier = "currentLocation"
         let locationIdentifier = "location"
         let defaultIdentifier = "default"
         
         if  row == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: defaultIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: currentLocationIdentifier, for: indexPath) as! CurrentLocationCell
             
             cell.imageView?.image = #imageLiteral(resourceName: "geolocation")
             
             LocationServices.shared.getCurrentLocationAddress(completion: { (address, error) in
                 
                 if let a = address, let city = a["City"] as? String {
-                    cell.textLabel?.text = city
+                    cell.textLabel?.text = "Текущее местоположение"
+                    cell.detailTextLabel?.text = city
+                    cell.layoutSubviews()
                 } else {
-                    cell.textLabel?.text = "Текущая геопозиция недоступна"
+                    cell.textLabel?.text = "Геопозиция недоступна"
+                    cell.detailTextLabel?.text = ""
+                    cell.layoutSubviews()
                 }
             })
             
@@ -90,7 +92,7 @@ class PlacesViewController: UITableViewController, NSFetchedResultsControllerDel
         let indexPathWithOffset = IndexPath(row: row - 1, section: indexPath.section)
         let place = fetchedResultsController.object(at: indexPathWithOffset) as! Location
         cell.textLabel?.text  = place.title
-    
+        
         
         return cell
         

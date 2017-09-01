@@ -100,34 +100,42 @@ class DailyForecastViewController: UIViewController {
     
     private func fetchWeatherData() {
         
-        let location = LocationServices.shared.selectedLocation.location
-        let latitude = location.latitude
-        let longitude = location.longitude
-        
-        let clientServices = ClientServices.shared
-        let excludeFields: [Forecast.Field] = [.minutely, .flags, .alerts]
-        clientServices.getForecast(latitude: latitude, longitude: longitude,
-                                   extendHourly: true, excludeFields: excludeFields) { result in
-                                    switch result {
-                                    case .success(let forecast, _):
-                                        
-                                        DispatchQueue.main.async {
+        if let location = LocationServices.shared.selectedLocation.location {
+            
+            
+            let latitude = location.latitude
+            let longitude = location.longitude
+            
+            let clientServices = ClientServices.shared
+            let excludeFields: [Forecast.Field] = [.minutely, .flags, .alerts]
+            clientServices.getForecast(latitude: latitude, longitude: longitude,
+                                       extendHourly: true, excludeFields: excludeFields) { result in
+                                        switch result {
+                                        case .success(let forecast, _):
                                             
-                                            self.dailyForecastData = (forecast.daily?.data)!
-                                            self.hourlyForecastData = forecast.hourly
+                                            DispatchQueue.main.async {
+                                                
+                                                self.dailyForecastData = (forecast.daily?.data)!
+                                                self.hourlyForecastData = forecast.hourly
+                                                
+                                                self.updateView()
+                                                self.refreshControl.endRefreshing()
+                                                self.activityIndicatorView.stopAnimating()
+                                                
+                                            }
                                             
-                                            self.updateView()
-                                            self.refreshControl.endRefreshing()
-                                            self.activityIndicatorView.stopAnimating()
-                                            
+                                        case .failure(let error):
+                                            self.messageLabel.text = "Упс... Проверьте соединение с интернетом"
+                                            print(error.localizedDescription)
                                         }
-                                        
-                                    case .failure(let error):
-                                        self.messageLabel.text = "Упс... Проверьте соединение с интернетом"
-                                        print(error.localizedDescription)
-                                    }
-        }
+            }
         
+        } else {
+            
+            self.messageLabel.text = "Геопозиция недоступна. Включите геопозицию или выберите местоположение самостоятельно"
+            self.activityIndicatorView.stopAnimating()
+            messageLabel.isHidden = false
+        }
     }
     
 }

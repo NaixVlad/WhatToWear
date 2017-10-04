@@ -21,3 +21,11 @@ CitySearch
 ------------------
 ![alt text](https://user-images.githubusercontent.com/19556430/31173654-1dcb332c-a911-11e7-8984-4c487ea59aba.PNG)
 ------------------
+
+## TODO:
+1. Make clothes change
+2. Winter scene
+3. Sunset, sunrise skyboxes
+4. Notifications for bad weather
+5. Widget
+6. Powered by dark sky label

@@ -27,3 +27,4 @@ CitySearch
 4. Notifications for bad weather
 5. Widget
 6. Powered by dark sky label
+7. Tutorial

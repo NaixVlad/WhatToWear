@@ -8,6 +8,7 @@
 
 import Foundation
 import ForecastIO
+import GooglePlaces
 
 class ClientServices: DarkSkyClient {
     
@@ -16,6 +17,8 @@ class ClientServices: DarkSkyClient {
     fileprivate init() {
         
         super.init(apiKey: "80699cc044c5a8677fbe48692fe0c850")
+        
+        GMSPlacesClient.provideAPIKey("AIzaSyCU1Vzmv-wsXgzZiNcNJPWLo56Qldi_RsM")
         let lang = Locale.current.languageCode
         self.language = Language(rawValue: lang!)
         self.units = .si

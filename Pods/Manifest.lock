@@ -1,12 +1,18 @@
 PODS:
   - ForecastIO (3.1.0)
+  - GoogleMaps/Base (2.3.1)
+  - GooglePlaces (2.3.1):
+    - GoogleMaps/Base (= 2.3.1)
 
 DEPENDENCIES:
   - ForecastIO
+  - GooglePlaces
 
 SPEC CHECKSUMS:
   ForecastIO: ef82e67a1c5af3de6cb8358b89505b83db1c6db2
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
+  GooglePlaces: 4a7b22debfa1af65017b82943431822607e45201
 
-PODFILE CHECKSUM: de1aa45407c249f6600b7c29217b527f48fe5e42
+PODFILE CHECKSUM: 84a48f2a118a8f2bc1e284e7e110c6f1ef79ecbd
 
 COCOAPODS: 1.1.1

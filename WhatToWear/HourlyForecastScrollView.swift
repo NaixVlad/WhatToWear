@@ -16,7 +16,7 @@ class HourlyForecastScrollView: UIScrollView {
     var temperatureView: UIView!
     var unitSize: CGFloat = 0.0
 
-    let paddingLeft: CGFloat = 36.0
+    var paddingLeft: CGFloat = 36.0
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,16 +32,34 @@ class HourlyForecastScrollView: UIScrollView {
         let width = unitSize * CGFloat(dates.count)
         self.contentSize = CGSize(width: width, height: frame.height)
         
-        createTimePart(dates: dates)
+        createTimePart(dates: dates, height: self.contentSize.height / 3)
         createWeatherDescriptionPart(weatherBlocks: weatherBlocks)
         createTemperaturePart(temperatures: temperatures)
 
     }
     
+    init() {
+        super.init(frame: CGRect.zero)
+    }
     
-    private func createTimePart(dates: [Date]) {
+    func setupTimeScrollView (dates: [Date], unitSize: CGFloat) {
         
-        let height = self.contentSize.height / 3
+        self.unitSize = unitSize
+        
+        let width = unitSize * CGFloat(dates.count)
+        let height = frame.height
+        self.contentSize = CGSize(width: width, height: frame.height)
+        paddingLeft = 20
+        
+        createTimePart(dates: dates, height: height)
+
+        
+    }
+    
+    
+    private func createTimePart(dates: [Date], height: CGFloat) {
+        
+        
         let width = self.contentSize.width
         
         let timeViewRect = CGRect(x: paddingLeft, y: 0, width: width, height: height)

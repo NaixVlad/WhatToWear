@@ -92,7 +92,7 @@ class LocationServices: NSObject {
         }
     }
     
-    func getCurrentLocationAddress(completion: @escaping (_ address: JSONDictionary?, _ error: Error?) -> ()) {
+    func getCurrentLocationAddress(completion: @escaping (_ address: String?, _ error: Error?) -> ()) {
         
         if CLLocationManager.locationServicesEnabled(), let loc = locationManager.location  {
             
@@ -110,7 +110,7 @@ class LocationServices: NSObject {
                     
                     placeMark = placeArray?[0]
                     
-                    guard let address = placeMark.addressDictionary as? JSONDictionary else {
+                    guard let address = placeMark.locality else {
                         return
                     }
                     

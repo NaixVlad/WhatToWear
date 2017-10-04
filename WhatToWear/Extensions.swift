@@ -62,8 +62,8 @@ extension Float {
 extension String {
     
     func width(usingFont font: UIFont) -> CGFloat {
-        let fontAttributes = [NSFontAttributeName: font]
-        let size = self.size(attributes: fontAttributes)
+        let fontAttributes = [NSAttributedStringKey.font: font]
+        let size = self.size(withAttributes: fontAttributes)
         return size.width
     }
 }
@@ -99,6 +99,10 @@ extension UIColor {
         return UIColor(red: 0.478, green: 0.635, blue: 0.847, alpha: 1.0)
     }
 
+    public class var refreshControlTintColor: UIColor {
+        return UIColor(red:0.51, green:0.51, blue:0.51, alpha:1.0)
+    }
+    
     
     static var random: UIColor {
         return UIColor(red: .random(), green: .random(), blue: .random(), alpha: 1.0)

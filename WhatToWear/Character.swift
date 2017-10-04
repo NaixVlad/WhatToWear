@@ -11,6 +11,24 @@ import SceneKit
 
 class Character {
     
+    init(sex: Sex, temperature: Temperature) {
+        self.sex = sex
+        
+        let scene = chooseScene(sex: sex)
+        
+        self.node = scene.rootNode.childNodes[0]
+        
+        hair = scene.rootNode.childNode(withName: "Hair", recursively: true)
+        eyes = scene.rootNode.childNode(withName: "Eyes", recursively: true)
+        body = scene.rootNode.childNode(withName: "Body", recursively: true)
+        tops = scene.rootNode.childNode(withName: "Tops", recursively: true)
+        bottoms = scene.rootNode.childNode(withName: "Bottoms", recursively: true)
+        shoes = scene.rootNode.childNode(withName: "Shoes", recursively: true)
+
+        setupAnimations()
+        
+    }
+    
     var sex: Sex {
         didSet {
             
@@ -22,29 +40,20 @@ class Character {
     
     var node = SCNNode() //main node
     
-    var hair = SCNNode()
-    var eyes = SCNNode()
-    var tops = SCNNode()
-    var body = SCNNode()
-    var bottoms = SCNNode()
-    var shoes = SCNNode()
+    var hair: SCNNode?
+    var eyes: SCNNode?
+    var body: SCNNode?
+    var tops: SCNNode?
+    var bottoms: SCNNode?
+    var shoes: SCNNode?
     
     private var walkAnimation = CAAnimation()
     private var idleAnimation = CAAnimation()
     
-    init(sex: Sex) {
-        self.sex = sex
-        let scene = chooseScene(sex: sex)
-        self.node = scene.rootNode.childNodes[0]
-        setupAnimations()
-        
-    }
-    
-    
     
     func setupAnimations() {
-        walkAnimation = CAAnimation.animationWithSceneNamed("art.scnassets/walk.dae")!
-        idleAnimation = CAAnimation.animationWithSceneNamed("art.scnassets/idle.dae")!
+        walkAnimation = CAAnimation.animationWithSceneNamed("art.scnassets/models/walk.dae")!
+        idleAnimation = CAAnimation.animationWithSceneNamed("art.scnassets/models/idle.dae")!
     }
     
     func walk() {
@@ -68,10 +77,10 @@ class Character {
         let characterScene: SCNScene
         switch sex {
         case .male:
-            characterScene = SCNScene(named: "art.scnassets/Male.scn")!
+            characterScene = SCNScene(named: "art.scnassets/models/Male.scn")!
             
         case .female:
-            characterScene = SCNScene(named: "art.scnassets/girl.scn")!
+            characterScene = SCNScene(named: "art.scnassets/models/girl.scn")!
         }
         
         return characterScene
